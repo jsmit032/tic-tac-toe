@@ -2,7 +2,8 @@ var players = [];
 var player1 = " ";
 var player2 = " ";
 var count = 1;
-var board = [[null, null, null],[null, null, null],[null, null, null]];
+var board = [[null, null, null], [null, null, null], [null, null, null]];
+var wins = [7, 56, 448, 73, 146, 292, 273, 84];
 
 window.onload = function () {
 
@@ -23,7 +24,27 @@ window.onload = function () {
 					listPlayers(player2, "player2-H");
 				}
 		}
+	}); //end of creating players function on click
+
+	//example of excessive coding to get div values I want
+	//How to assign these values to a clicked cell???
+	document.getElementById('divValues').addEventListener('click', function () {
+
+		getDivValue(6); 
+		getDivValue(7); 
+		getDivValue(8); 
+		getDivValue(10); 
+		getDivValue(11); 
+		getDivValue(12); 
+		getDivValue(14); 
+		getDivValue(15); 
+		getDivValue(16);
 	});
+
+//assigns turns to each player
+	if (count % 2 == 0) {
+
+	}
 
 //enables game board to switch between X's and O's only clicking each div once
 	for (var row = 1; row < 4; row++) {
@@ -54,13 +75,14 @@ window.onload = function () {
 			}
 		}
 	}
-
+// creates a new player with a score set to 0
 function Player(name){
 	this.name = name;
+	this.score = 0;
 	this.toString = function(){
 		return "My name is " + this.name + ".";
 	};
-}
+} //end of onload function
 
 // function to insert Player's names in header
 var listPlayers = function (player, headerID) {
@@ -69,4 +91,12 @@ var listPlayers = function (player, headerID) {
 	header.appendChild(listPlayer);
 	var insert = document.getElementById(headerID);
 	insert.appendChild(header);
+}
+
+//retrieves value of each div based on indexes
+// The issue is I need only these index numbers 6, 7, 8, 10, 11, 12, 14, 15, 16 
+//To call each indiviual index would be way too much code as I'll show above
+var getDivValue = function (divIndex) {
+	var div = document.getElementsByTagName("div")[divIndex];
+	alert(div.getAttribute("value"));
 }
